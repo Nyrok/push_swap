@@ -12,12 +12,27 @@
 
 #include "./includes/push_swap.h"
 
+static int	ft_fullisdigit(char *str)
+{
+	if (ft_strlen(str) >= 12)
+		return (0);
+	if (*str == '+' || *str == '-')
+		str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
 t_stack	*parse_stack(int count, char **list)
 {
-	t_stack	*stack;
-	t_stack	*prev_stack;
-	int		i;
-	int		*parsed_value;
+	t_stack		*stack;
+	t_stack		*prev_stack;
+	long int	parsed_value;
+	int			i;
 
 	i = 1;
 	prev_stack = NULL;
@@ -25,15 +40,13 @@ t_stack	*parse_stack(int count, char **list)
 	{
 		stack = create_stack(prev_stack);
 		if (!stack)
-			return (NULL);
+			return (free_stack(prev_stack));
+		if (!ft_fullisdigit(list[i]))
+			return (free_stack(stack));
 		parsed_value = ft_atoi(list[i]);
-		if (!parsed_value)
-		{
-			free(stack);
-			return (NULL);
-		}
-		stack->value = *parsed_value;
-		free(parsed_value);
+		if (parsed_value < -2147483648 || parsed_value > 2147483647)
+			return (free_stack(stack));
+		stack->value = parsed_value;
 		prev_stack = stack;
 		i++;
 	}

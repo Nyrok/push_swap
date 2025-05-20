@@ -24,31 +24,31 @@ static int	ft_is_space(char c)
 	return (c == '\r' || c == '\v' || c == '\f');
 }
 
-int	*ft_atoi(const char *nptr)
+long int	ft_atoi(const char *nptr)
 {
-	int	*result;
-	int	i;
-	int	p;
-	int	val;
+	long int	result;
+	int			i;
+	int			p;
+	int			val;
 
-	result = malloc(sizeof(int));
-	*result = 0;
+	result = 0;
 	i = 0;
 	p = 1;
 	while (nptr[i] != '\0' && ft_is_space(nptr[i]))
 		i++;
 	if (ft_is_sign(nptr[i]))
 	{
-		if (nptr[i++] == '-')
+		if (nptr[i] == '-')
 			p *= -1;
+		i++;
 	}
 	while (nptr[i] != '\0')
 	{
-		val = (int)(nptr[i++] - '0');
+		val = (int)(nptr[i] - '0');
 		if (val < 0 || val > 9)
-			return (NULL);
-		*result = *result * 10 + val;
+			return (p * result);
+		result = result * 10 + val;
+		i++;
 	}
-	*result *= p;
-	return (result);
+	return ((long int)p * result);
 }

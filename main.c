@@ -21,6 +21,10 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	stack = parse_stack(argc, argv);
+	stack = get_head(stack);
+	if (!stack)
+		return (1);
 	print_stack(stack);
+	free_stack(stack);
 	return (0);
 }
