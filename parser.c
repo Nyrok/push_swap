@@ -27,6 +27,25 @@ static int	ft_fullisdigit(char *str)
 	return (1);
 }
 
+static int	check_unique(t_stack *stack)
+{
+	t_stack	*prev;
+	int		value;
+
+	if (!stack)
+		return (1);
+	value = stack->value;
+	stack = stack->prev;
+	prev = stack;
+	while (stack)
+	{
+		if (stack->value == value)
+			return (0);
+		stack = stack->prev;
+	}
+	return (check_unique(prev));
+}
+
 t_stack	*parse_stack(int count, char **list)
 {
 	t_stack		*stack;
@@ -50,5 +69,7 @@ t_stack	*parse_stack(int count, char **list)
 		prev_stack = stack;
 		i++;
 	}
+	if (!check_unique(stack))
+		return (free_stack(stack));
 	return (stack);
 }
