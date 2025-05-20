@@ -1,7 +1,9 @@
 CX = cc
 CXFLAGS = -Wall -Wextra -Werror -g3
 
-SRCS =	main.c
+SRCS =	main.c \
+		parser.c \
+		stack.c
 
 OBJS = $(SRCS:.c=.o)
 OUTPUT = push_swap

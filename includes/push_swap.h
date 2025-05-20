@@ -15,4 +15,15 @@
 # include "./ft_printf.h"
 # include "./libft.h"
 
+typedef struct s_stack
+{
+	int				value;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}	t_stack;
+
+t_stack	*parse_stack(int count, char **list);
+void	print_stack(t_stack *stack);
+t_stack	*create_stack(t_stack *prev);
+
 #endif

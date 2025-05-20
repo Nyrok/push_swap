@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,30 @@
 
 #include "./includes/push_swap.h"
 
-int	main(int argc, char **argv)
+t_stack	*parse_stack(int count, char **list)
 {
 	t_stack	*stack;
+	t_stack	*prev_stack;
+	int		i;
+	int		*parsed_value;
 
-	if (argc == 1)
+	i = 1;
+	prev_stack = NULL;
+	while (i < count)
 	{
-		return (1);
+		stack = create_stack(prev_stack);
+		if (!stack)
+			return (NULL);
+		parsed_value = ft_atoi(list[i]);
+		if (!parsed_value)
+		{
+			free(stack);
+			return (NULL);
+		}
+		stack->value = *parsed_value;
+		free(parsed_value);
+		prev_stack = stack;
+		i++;
 	}
-	stack = parse_stack(argc, argv);
-	print_stack(stack);
-	return (0);
+	return (stack);
 }

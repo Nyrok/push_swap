@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkonte <hkonte@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,26 @@
 
 #include "./includes/push_swap.h"
 
-int	main(int argc, char **argv)
+t_stack	*create_stack(t_stack *prev)
 {
 	t_stack	*stack;
 
-	if (argc == 1)
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
+		return (NULL);
+	stack->next = NULL;
+	stack->prev = prev;
+	if (prev)
+		prev->next = stack;
+	return (stack);
+}
+
+
+void	print_stack(t_stack *stack)
+{
+	while (stack)
 	{
-		return (1);
+		ft_printf("%i\n", stack->value);
+		stack = stack->prev;
 	}
-	stack = parse_stack(argc, argv);
-	print_stack(stack);
-	return (0);
 }
