@@ -15,9 +15,11 @@
 void	*free_stack(t_stack *stack)
 {
 	while (stack && stack->prev)
-	{
 		stack = stack->prev;
-		free(stack->next);
+	while (stack && stack->next)
+	{
+		stack = stack->next;
+		free(stack->prev);
 	}
 	free(stack);
 	return (NULL);

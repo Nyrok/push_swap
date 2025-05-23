@@ -27,5 +27,6 @@ void	print_stack(t_stack *stack);
 t_stack	*create_stack(t_stack *prev);
 void	*free_stack(t_stack *stack);
 t_stack	*get_head(t_stack *stack);
+void	*exit_error(t_stack *stack, char *message);
 
 #endif
