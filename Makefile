@@ -5,7 +5,10 @@ SRCS =	main.c \
 		parser.c \
 		stack.c \
 		free.c \
-		exit.c
+		exit.c \
+		sorter.c \
+		radix_sorter.c \
+		instructions.c
 
 OBJS = $(SRCS:.c=.o)
 OUTPUT = push_swap

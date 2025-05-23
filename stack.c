@@ -21,18 +21,10 @@ t_stack	*create_stack(t_stack *prev)
 		return (NULL);
 	stack->prev = prev;
 	stack->next = NULL;
+	stack->index = 0;
 	if (prev)
 		prev->next = stack;
 	return (stack);
-}
-
-void	print_stack(t_stack *stack)
-{
-	while (stack)
-	{
-		ft_printf("%i\n", stack->value);
-		stack = stack->next;
-	}
 }
 
 t_stack	*get_head(t_stack *stack)
@@ -40,4 +32,34 @@ t_stack	*get_head(t_stack *stack)
 	while (stack && stack->prev)
 		stack = stack->prev;
 	return (stack);
+}
+
+t_stack	*get_queue(t_stack *stack)
+{
+	while (stack && stack->next)
+		stack = stack->next;
+	return (stack);
+}
+
+int	get_size(t_stack *stack)
+{
+	int	size;
+
+	size = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		size++;
+	}
+	return (size);
+}
+
+int	get_max_bits(int size)
+{
+	int	max_bits;
+
+	max_bits = 0;
+	while ((size >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
 }
