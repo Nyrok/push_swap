@@ -8,7 +8,8 @@ SRCS =	main.c \
 		exit.c \
 		sorter.c \
 		radix_sorter.c \
-		instructions.c
+		instructions.c \
+		base_instructions.c
 
 OBJS = $(SRCS:.c=.o)
 OUTPUT = push_swap

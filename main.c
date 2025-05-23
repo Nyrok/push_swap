@@ -12,21 +12,36 @@
 
 #include "./includes/push_swap.h"
 
+int	is_sorted(t_stack *stack)
+{
+	int	value;
+
+	if (!stack)
+		return (1);
+	value = stack->value;
+	stack = stack->next;
+	while (stack)
+	{
+		if (value > stack->value)
+			return (0);
+		value = stack->value;
+		stack = stack->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack;
 
 	if (argc == 1)
-	{
-		return (1);
-	}
+		exit_error(NULL);
 	stack = parse_stack(argc, argv);
 	stack = get_head(stack);
 	if (!stack)
 		return (1);
 	stack = sort_stack(stack);
 	stack = get_head(stack);
-	print_stack(stack);
 	free_stack(stack);
 	return (0);
 }

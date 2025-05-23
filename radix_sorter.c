@@ -12,7 +12,7 @@
 
 #include "./includes/push_swap.h"
 
-static void	assign_indices(t_stack *stack)
+void	assign_indexes(t_stack *stack)
 {
 	t_stack	*tmp1;
 	t_stack	*tmp2;
@@ -29,9 +29,36 @@ static void	assign_indices(t_stack *stack)
 				index++;
 			tmp2 = tmp2->next;
 		}
-		tmp1->index = index;
+		tmp1->radix_index = index;
 		tmp1 = tmp1->next;
 	}
+}
+
+int	find_lowest_index(t_stack *stack)
+{
+	int	pos;
+
+	pos = 0;
+	while (stack && stack->radix_index != 0)
+	{
+		pos++;
+		stack = stack->next;
+	}
+	return (pos);
+}
+
+t_stack	*min_node(t_stack *a)
+{
+	t_stack	*min;
+
+	min = a;
+	while (a)
+	{
+		if (a->value < min->value)
+			min = a;
+		a = a->next;
+	}
+	return (min);
 }
 
 void	radix_sort(t_stack *stack_a, int size, int max_bits)
@@ -43,14 +70,14 @@ void	radix_sort(t_stack *stack_a, int size, int max_bits)
 
 	i = 0;
 	stack_b = NULL;
-	assign_indices(stack_a);
+	assign_indexes(stack_a);
 	while (i < max_bits)
 	{
 		j = 0;
 		while (j < size)
 		{
 			tmp = get_head(stack_a);
-			if (((tmp->index >> i) & 1) == 0)
+			if (((tmp->radix_index >> i) & 1) == 0)
 				pb(&stack_a, &stack_b);
 			else
 				ra(&stack_a);

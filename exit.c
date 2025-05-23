@@ -12,10 +12,9 @@
 
 #include "./includes/push_swap.h"
 
-void	*exit_error(t_stack *stack, char *message)
+void	*exit_error(t_stack *stack)
 {
 	ft_putendl_fd("Error", STDERR_FILENO);
-	ft_putendl_fd(message, STDERR_FILENO);
 	free_stack(stack);
 	exit(EXIT_FAILURE);
 	return (NULL);

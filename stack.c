@@ -21,7 +21,7 @@ t_stack	*create_stack(t_stack *prev)
 		return (NULL);
 	stack->prev = prev;
 	stack->next = NULL;
-	stack->index = 0;
+	stack->radix_index = 0;
 	if (prev)
 		prev->next = stack;
 	return (stack);

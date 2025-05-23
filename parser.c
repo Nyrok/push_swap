@@ -68,17 +68,17 @@ t_stack	*parse_stack(int count, char **list)
 	{
 		stack = create_stack(prev_stack);
 		if (!stack)
-			return (exit_error(prev_stack, "Error while creating the stack."));
+			return (exit_error(prev_stack));
 		if (!ft_fullisdigit(list[i]))
-			return (exit_error(stack, "The stack must only contains numbers."));
+			return (exit_error(stack));
 		parsed_value = ft_atoi(list[i]);
 		if (parsed_value < -2147483648 || parsed_value > 2147483647)
-			return (exit_error(stack, "A number is out of the integer range."));
+			return (exit_error(stack));
 		stack->value = parsed_value;
 		prev_stack = stack;
 		i++;
 	}
 	if (!check_unique(stack))
-		return (exit_error(stack, "Your stack must be unique."));
+		return (exit_error(stack));
 	return (stack);
 }
