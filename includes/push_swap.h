@@ -12,7 +12,6 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H 
-# include "./ft_printf.h"
 # include "./libft.h"
 
 typedef struct s_stack
@@ -24,7 +23,6 @@ typedef struct s_stack
 }	t_stack;
 
 t_stack	*parse_stack(int count, char **list);
-void	print_stack(t_stack *stack);
 t_stack	*create_stack(t_stack *prev);
 void	*free_stack(t_stack *stack);
 t_stack	*get_head(t_stack *stack);

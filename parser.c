@@ -46,15 +46,6 @@ static int	check_unique(t_stack *stack)
 	return (check_unique(prev));
 }
 
-void	print_stack(t_stack *stack)
-{
-	while (stack)
-	{
-		ft_printf("%i\n", stack->value);
-		stack = stack->next;
-	}
-}
-
 t_stack	*parse_stack(int count, char **list)
 {
 	t_stack		*stack;

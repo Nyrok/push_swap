@@ -14,32 +14,25 @@ SRCS =	main.c \
 OBJS = $(SRCS:.c=.o)
 OUTPUT = push_swap
 
-LIB_PRINTF = ft_printf/libftprintf.a
 LIB_FT = libft/libft.a
-LIBS = $(LIB_PRINTF) $(LIB_FT)
 
 all: $(OUTPUT)
-
-$(LIB_PRINTF):
-	make -C ft_printf
 
 $(LIB_FT):
 	make -C libft
 
-$(OUTPUT): $(OBJS) $(LIBS)
-	$(CX) $(CXFLAGS) $(OBJS) -o $(OUTPUT) -I includes $(LIBS)
+$(OUTPUT): $(OBJS) $(LIB_FT)
+	$(CX) $(CXFLAGS) $(OBJS) -o $(OUTPUT) -I includes $(LIB_FT)
 
 %.o: %.c
 	$(CX) $(CXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
-	make clean -C ft_printf
 	make clean -C libft
 
 fclean: clean
 	rm -f $(OUTPUT)
-	rm -f $(LIB_PRINTF)
 	rm -f $(LIB_FT)
 
 re: fclean all
