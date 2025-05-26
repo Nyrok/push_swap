@@ -46,6 +46,13 @@ static int	check_unique(t_stack *stack)
 	return (check_unique(prev));
 }
 
+void	*parse_error(t_stack *stack, char **list, int is_from_argv)
+{
+	if (!is_from_argv)
+		free_split(list);
+	return (exit_error(stack));
+}
+
 t_stack	*parse_stack(int count, char **list, int is_from_argv)
 {
 	t_stack		*stack;
@@ -59,17 +66,17 @@ t_stack	*parse_stack(int count, char **list, int is_from_argv)
 	{
 		stack = create_stack(prev_stack);
 		if (!stack)
-			return (exit_error(prev_stack));
+			return (parse_error(prev_stack, list, is_from_argv));
 		if (!ft_fullisdigit(list[i]))
-			return (exit_error(stack));
+			return (parse_error(stack, list, is_from_argv));
 		parsed_value = ft_atoi(list[i]);
 		if (parsed_value < -2147483648 || parsed_value > 2147483647)
-			return (exit_error(stack));
+			return (parse_error(stack, list, is_from_argv));
 		stack->value = parsed_value;
 		prev_stack = stack;
 		i++;
 	}
 	if (!check_unique(stack))
-		return (exit_error(stack));
+		return (parse_error(stack, list, is_from_argv));
 	return (stack);
 }
