@@ -46,14 +46,14 @@ static int	check_unique(t_stack *stack)
 	return (check_unique(prev));
 }
 
-t_stack	*parse_stack(int count, char **list)
+t_stack	*parse_stack(int count, char **list, int is_from_argv)
 {
 	t_stack		*stack;
 	t_stack		*prev_stack;
 	long int	parsed_value;
 	int			i;
 
-	i = 1;
+	i = is_from_argv;
 	prev_stack = NULL;
 	while (i < count)
 	{

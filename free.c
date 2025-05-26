@@ -12,6 +12,17 @@
 
 #include "./includes/push_swap.h"
 
+void	free_split(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+		free(args[i++]);
+	if (args)
+		free(args);
+}
+
 void	*free_stack(t_stack *stack)
 {
 	while (stack && stack->prev)

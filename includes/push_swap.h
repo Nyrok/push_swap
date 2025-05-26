@@ -22,9 +22,10 @@ typedef struct s_stack
 	int				radix_index;
 }	t_stack;
 
-t_stack	*parse_stack(int count, char **list);
+t_stack	*parse_stack(int count, char **list, int is_from_argv);
 t_stack	*create_stack(t_stack *prev);
 void	*free_stack(t_stack *stack);
+void	free_split(char **args);
 t_stack	*get_head(t_stack *stack);
 t_stack	*get_queue(t_stack *stack);
 void	*exit_error(t_stack *stack);
