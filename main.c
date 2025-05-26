@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	{
 		argv = ft_split(argv[1], ' ');
 		argc = 0;
-		while (argv[argc])
+		while (argv && argv[argc])
 			argc++;
 		is_from_argv = 0;
 	}
