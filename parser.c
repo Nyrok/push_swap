@@ -46,7 +46,7 @@ static int	check_unique(t_stack *stack)
 	return (check_unique(prev));
 }
 
-void	*parse_error(t_stack *stack, char **list, int is_from_argv)
+static void	*parse_error(t_stack *stack, char **list, int is_from_argv)
 {
 	if (!is_from_argv)
 		free_split(list);
@@ -60,6 +60,7 @@ t_stack	*parse_stack(int count, char **list, int is_from_argv)
 	long int	parsed_value;
 	int			i;
 
+	stack = NULL;
 	i = is_from_argv;
 	prev_stack = NULL;
 	while (i < count)
