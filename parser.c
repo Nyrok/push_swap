@@ -14,7 +14,10 @@
 
 static int	ft_fullisdigit(char *str)
 {
-	if (ft_strlen(str) >= 12)
+	size_t	len;
+
+	len = ft_strlen(str);
+	if (!len || len >= 12)
 		return (0);
 	if (*str == '+' || *str == '-')
 		str++;
